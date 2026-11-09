@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Airport Connection Weather Risk Calculator</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="script.js" defer></script>
+</head>
+<body>
+  <main class="container">
+    <header>
+      <p class="eyebrow">TRAVEL WEATHER TOOL</p>
+      <h1>Airport Connection <span>Risk Calculator</span></h1>
+      <p class="intro">Check forecast weather at your connecting airport and estimate how it could affect a tight connection.</p>
+    </header>
+    <section class="card" aria-labelledby="plan-title">
+      <h2 id="plan-title">Your connection</h2>
+      <form id="risk-form" novalidate>
+        <div class="fields">
+          <label>Connecting airport
+            <select id="airport" required>
+              <option value="">Choose an airport</option>
+              <option value="BOS">Boston Logan (BOS)</option>
+              <option value="CLT">Charlotte Douglas (CLT)</option>
+              <option value="JFK">New York JFK (JFK)</option>
+              <option value="ATL">Atlanta (ATL)</option>
+              <option value="ORD">Chicago O'Hare (ORD)</option>
+              <option value="DFW">Dallas/Fort Worth (DFW)</option>
+            </select>
+          </label>
+          <label>Connection length (minutes)
+            <input id="duration" type="number" min="30" max="360" step="1" placeholder="e.g. 75" required>
+          </label>
+          <label>Connection date and time (airport local)
+            <input id="forecast-time" type="datetime-local" required>
+          </label>
+        </div>
+        <button id="calculate" type="submit">Calculate weather risk</button>
+      </form>
+    </section>
+    <section class="card results" aria-labelledby="results-title">
+      <h2 id="results-title">Risk assessment</h2>
+      <div id="status" role="status" aria-live="polite">Choose your airport, connection length, and date/time to see an estimate.</div>
+      <div id="result" hidden>
+        <div class="score-line"><div><p class="muted">ESTIMATED WEATHER-RELATED SCORE</p><div id="score" class="score">--</div></div><span id="risk-level" class="risk-label"></span></div>
+        <p id="explanation"></p>
+        <div class="metrics">
+          <div><span>Precipitation chance</span><strong id="rain">--</strong></div>
+          <div><span>Wind speed</span><strong id="wind">--</strong></div>
+          <div><span>Visibility</span><strong id="visibility">--</strong></div>
+        </div>
+        <p id="forecast-label" class="muted"></p>
+      </div>
+    </section>
+    <footer>Educational weather-based estimate only. Not a flight-delay prediction. Always check your airline for actual flight status.</footer>
+  </main>
+</body>
+</html>
